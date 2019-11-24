@@ -1,13 +1,14 @@
 function makeUL(array) {
   // Create the list element:
   var list = document.createElement('ul');
+  array = sortByLastName(array);
 
   for (var i = 0; i < array.length; i++) {
     // Create the list item:
     var item = document.createElement('li');
 
     // Set its contents:
-    item.appendChild(document.createTextNode(JSON.stringify(getNames(array[i]))));
+    item.appendChild(document.createTextNode(getNames(array[i])));
 
     // Add it to the list:
     list.appendChild(item);
@@ -18,7 +19,20 @@ function makeUL(array) {
 }
 
 function getNames(obj) {
-  return obj.name.first + ' ' + obj.name.last;
+  var string = obj.name.last + ', ' + obj.name.first;
+  return string;
+}
+
+function sortByLastName(array) {
+  return array.sort((obj1, obj2) => {
+    if (obj1.name.last > obj2.name.last) {
+      return 1;
+    } else if (obj1.name.last < obj2.name.last) {
+      return -1;
+    } else {
+      return 0;
+    }
+  })
 }
 
 const Http = new XMLHttpRequest();
