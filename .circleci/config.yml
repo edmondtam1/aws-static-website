@@ -10,7 +10,7 @@ jobs:
           command: sudo pip install awscli
       - run:
           name: Deploy to S3 bucket
-          command: aws s3 sync . s3://YOURBUCKETNAME/ --exclude '.circleci/*' --exclude '.git/*' 
+          command: aws s3 sync . s3://aws-static-website-exercise/ --exclude '.circleci/*' --exclude '.git/*' 
 
 workflows:
   version: 2
